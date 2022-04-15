@@ -405,11 +405,12 @@
                                                 <td>{{products.prix }}</td>
                                                 <td>
                                                     <i class="fa fa-edit text-success"></i>
-                                                    <i class="fa fa-trash text-danger"></i>
+                                                    <i (click)="eliminateProduct(products._id)" class="fa fa-trash text-danger"></i>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <h5 style="text-align: start; margin-top: 10px " *ngIf="listProduct.length == 0">there are no products to display</h5>
                                 </div>
                             </div>
                         </div>
