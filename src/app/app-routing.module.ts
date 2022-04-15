@@ -1,18 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { InscritComponent } from './components/inscrit/inscrit.component';
+
 import { LoginComponent } from './components/login/login.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
+import { InscritComponent } from './components/inscrit/inscrit.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { ShopComponent } from './components/shop/shop.component';
+import { CoashComponent } from './components/coash/coash.component';
+
 
 
 const routes: Routes = [
-
+  {path:'navbar', component:NavbarComponent},
   {path:'login', component:LoginComponent},
   {path:'inscrit', component:InscritComponent},
-  {path:'home', component:HomeComponent}
+  {path:'home', component:HomeComponent},
+  {path:'contact', component:ContactComponent},
+  {path:'shop', component:ShopComponent},
+  {path:'coash', component:CoashComponent},
+  
 
+  {path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
+}
+  
   
 ];
 

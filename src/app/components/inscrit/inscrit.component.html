@@ -1,116 +1,148 @@
-<section class="drawer">
-    <div class="col-md-12 size-img back-img">
-        <div class="effect-cover">
-            <h3 class="txt-advert animated">Bienvenu Dans notre club !</h3>
-            <p class="txt-advert-sub animated">Si vous n'avez pas un compte inscrire ici</p>
+<body>
+    <section class="drawer">
+        <div class="col-md-12 size-img back-img">
+            <div class="effect-cover">
+                <h3 class="txt-advert animated">Bienvenu Dans notre club ! </h3>
+            </div>
         </div>
-    </div>
 
-    <!-- Shop Login -->
-    <div class="container secondary-page">
-        <section id="login" class="login section">
+        <div class="container secondary-page">
+            <section id="login" class="login section">
 
-            <div class="container">
-                <div class="top-score-title right-score col-md-12">
-                    <h3>Clube <span>de Tennis</span><span class="point-int"> !</span></h3>
-                    <div class="inner">
+                <div class="container">
+                    <div class="top-score-title right-score col-md-12">
+                        <h3>Didn't you <span>account yet</span><span class="point-int"> ?</span></h3>
+                        <div class="inner">
 
+                            <div class="row">
 
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="login-left">
-
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6">
-                                <div class="login-form">
-                                    <h2>Inscrire ici</h2>
-                                    <p> tu a deja un compte ? <a href="/login">login ici</a></p>
-                                    <!-- Form -->
-                                    <form class="form" [formGroup]="inscritForm" (ngSubmit)="onSubmit()">
-                                        <div class="row mb-4">
-                                            <label for="horizontal-firstname" class="col-sm-2 col-form-label">Image
-                                            </label>
-                                            <div class="col-sm-9">
-                                                <input type="File" name="img_doc" class="form-control"
-                                                    id="horizontal-firstname-input">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <label for="horizontal-firstname-input" class="col-sm-2 col-form-label">Nom
-                                            </label>
-                                            <div class="col-sm-9">
-                                                <input type="text" name="nom_doc" class="form-control"
-                                                    id="horizontal-firstname-input">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <label for="horizontal-firstname-input"
-                                                class="col-sm-2 col-form-label">Prénom </label>
-                                            <div class="col-sm-9">
-                                                <input type="text" name="pren_doc" class="form-control"
-                                                    id="horizontal-firstname-input">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <label for="horizontal-firstname-input" class="col-sm-2 col-form-label">Age
-                                            </label>
-                                            <div class="col-sm-9">
-                                                <input type="text" name="spé_doc" class="form-control"
-                                                    id="horizontal-firstname-input">
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="row mb-4">
-                                            <label for="horizontal-email-input"
-                                                class="col-sm-2 col-form-label">Email</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" name="email_doc" class="form-control" id="horizontal-email-input" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
-                                                    <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
-                                                        <div *ngIf="f['email'].errors['required']">email is required</div>
-                                                        <div *ngIf="f['email'].errors['pattern']">email not valid.</div>
+                                <div class="col-lg-7">
+                                    <div class="login-form">
+                                        <div class="row1">
+                                            <h2> Register Here</h2>
+                                            <p>Already have an account ? <a href="/login">Login Here</a></p>
+                                            <!-- Form -->
+                                            <form class="form">
+                                                <div class="row mb-4">
+                                                    <label for="horizontal-firstname-input"
+                                                        class="col-sm-2 col-form-label">Photo
+                                                    </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="File" name="avatar" [(ngModel)]="joueurForm.avatar"
+                                                            (change)="loadImage($event)" name="img_doc"
+                                                            class="form-control" id="horizontal-firstname-input">
                                                     </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <label for="horizontal-password-input"
-                                                class="col-sm-2 col-form-label">mot de passe</label>
-                                            <div class="col-sm-9">
-                                                <input type="password" name="mdp_doc" class="form-control"
-                                                    id="horizontal-password-input">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <label for="horizontal-password-input" class="col-sm-2 col-form-label">Telephone</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" name="tlf_doc" class="form-control"
-                                                    id="horizontal-password-input" required>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <label for="horizontal-password-input" class="col-sm-2 col-form-label">
-                                                Sexe </label>
-                                                <div class="col-sm-9">
-                                         <INPUT type="radio" name="sex" value="H" checked > Homme <INPUT type="radio" name="sex" value="F"> Femme
-                                        </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group inscrire-btn">
-                                                <button class="btn" type="submit">Inscrire</button>
-                                            </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label for="horizontal-firstname-input"
+                                                        class="col-sm-2 col-form-label">Name
+                                                    </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="name" [(ngModel)]="joueurForm.name"
+                                                            class="form-control" id="horizontal-firstname-input">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label for="horizontal-firstname-input"
+                                                        class="col-sm-2 col-form-label">LastName </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="lname"
+                                                            [(ngModel)]="joueurForm.lastname" class="form-control"
+                                                            id="horizontal-firstname-input">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label for="horizontal-firstname-input"
+                                                        class="col-sm-2 col-form-label">Age
+                                                    </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="number" name="age" [(ngModel)]="joueurForm.age"
+                                                            class="form-control" id="horizontal-firstname-input">
+                                                    </div>
+                                                </div>
 
-                                        </div>
+                                                <div class="row mb-4">
+                                                    <label for="horizontal-firstname-input"
+                                                        class="col-sm-2 col-form-label">Email</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="email" name="email" [(ngModel)]="joueurForm.email"
+                                                            class="form-control" id="horizontal-email-input"
+                                                            formControlName="email">
+                                                        <div class="invalid-feedback">
+                                                            <div>email is required
+                                                            </div>
+                                                            <div>email not valid.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label for="horizontal-firstname-input"
+                                                        class="col-sm-2 col-form-label">Password</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="password" name="password"
+                                                            [(ngModel)]="joueurForm.password" class="form-control"
+                                                            id="horizontal-password-input">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label for="horizontal-firstname-input"
+                                                        class="col-sm-2 col-form-label">phone number</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="tel" [(ngModel)]="joueurForm.telephone"
+                                                            class="form-control" id="horizontal-password-input"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label for="horizontal-firstname-input"
+                                                        class="col-sm-2 col-form-label">
+                                                        Sexe </label>
+                                                    <div class="col-sm-9">
+                                                        <INPUT type="radio" name="sex" value="H" checked> Homme
+                                                        <INPUT type="radio" name="sex" value="F"> Femme
+                                                    </div>
+                                                </div>
 
-                                    </form>
-                                    <!--/ End Form -->
+                                                <div class="row mb-4">
+                                                    <label for="horizontal-firstname-input"
+                                                        class="col-sm-2 col-form-label">
+                                                        Equipe </label>
+                                                        <div class="col-sm-9">
+                                                    <select id="equipe" name="equipe" [(ngModel)]="joueurForm.equipe"
+                                                        ngDefaultControl class="form-control">
+                                                        <option value="none" selected="" disabled="">Equipe</option>
+                                                        <option [ngValue]="equipe._id" *ngFor=" let equipe of equipes ">
+                                                            {{equipe.name}}</option>
+                                                    </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div id="register-submit">
+                                                        <input type="submit" (click)="addJoueur()" value="Submit" />
+                                                    </div>
+
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                        <!--/ End Form -->
+                                    </div>
                                 </div>
+                                <div class="col-lg-5">
+                                    <div class="register-left">
+
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-        </section>
-    </div>
-    <!--/ End Login -->
+            </section>
+        </div>
+    </section>
+
+
+</body>

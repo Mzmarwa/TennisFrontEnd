@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Equipe } from 'src/app/models/equipe';
+import { Joueur } from 'src/app/models/joueur';
 import { AuthService } from 'src/app/services/auth.service';
-import { Router } from '@angular/router';
+import { JoueurService } from 'src/app/services/joueur.service';
 
 @Component({
   selector: 'app-inscrit',
@@ -9,40 +10,59 @@ import { Router } from '@angular/router';
   styleUrls: ['./inscrit.component.css']
 })
 export class InscritComponent implements OnInit {
-  submitted = false;
-  inscritForm: FormGroup;
-  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
- 
-  constructor(private sc: AuthService, public formBuilder: FormBuilder, private router: Router) {
-    this.inscritForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      lastname: ['', Validators.required],
-      avatar: ['', Validators.required],
-      email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-      password: ['',[ Validators.required]],
-    })
-   }
 
-  
-   get f() { return this.inscritForm.controls; }
-   ngOnInit(): void {
-   }
+  public equipe!: Equipe;
+  avatar: any;
+  equipes: Equipe[]=[];
+  constructor(private auth: AuthService, private js: JoueurService) { }
 
-   onSubmit() {
-    this.submitted = true;
+  joueurForm: Joueur = {
+    _id: '',
+    name: '',
+    lastname: '',
+    avatar: '',
+    email: '',
+    password: '',    
+    age: 0,
+    telephone: '',   
+    sexe: '', 
+    equipe: this.equipe
 
-    if (this.inscritForm.invalid) {
-      return;
-    }
+  };
 
-    this.sc.inscrit(this.inscritForm.value).subscribe(
-      res => {             
-        localStorage.setItem('token', res.token);     
-        this.router.navigate(['/home']);
+  loadImage(img: any) {
+    this.avatar = img.target.files[0];
+    console.log(this.avatar);
+  }
+
+  ngOnInit(): void {
+    this.listEquipe()
+  }
+
+  addJoueur() {
+    this.auth.inscritJoueur(this.joueurForm, this.avatar).subscribe(
+      (data) => {
+        if (!data) {
+          alert('ERROR!!');
+        } else {
+          console.log(data);
+          alert('Joueur saved successfully!');
+          //this.listProduct();
+        }
       },
-      err => console.log(err)
+      (err) => {
+        console.log(err);        
+      }
     );
+  }
 
+  listEquipe() {
+    this.js.getEquipe().subscribe(
+      (data) => {
+     this.equipes  = data 
+      console.log(data)
+      }, (err) => {console.log(err)}
+    )
   }
 
 }
