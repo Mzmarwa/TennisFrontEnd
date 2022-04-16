@@ -14,6 +14,7 @@ import { InscritComponent } from './components/inscrit/inscrit.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { CoashComponent } from './components/coash/coash.component';
+import { GameComponent } from './components/game/game.component';
 
 
 
@@ -28,6 +29,7 @@ import { CoashComponent } from './components/coash/coash.component';
     ContactComponent,
     ShopComponent,
     CoashComponent,
+    GameComponent,
  
   ],
   imports: [

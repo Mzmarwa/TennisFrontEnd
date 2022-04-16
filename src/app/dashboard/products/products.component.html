@@ -398,13 +398,14 @@
 
                                         <tbody>
                                             <tr *ngFor ="let products of listProduct">
-                                                <td scope="row">{{products.image}}</td>
+                                                <td scope="row"><img [src]="'http://localhost:3000/'+products.image" class="card-img-top" alt="..."></td>
+                                         
                                                 <td>{{products.marque}}</td>
                                                 <td class="fw-bold">{{products.name}}</td>
                                                 <td><a href="#" class="text-primary fw-bold">{{products.description}}</a></td>
                                                 <td>{{products.prix }}</td>
                                                 <td>
-                                                    <i class="fa fa-edit text-success"></i>
+                                                    <i [routerLink]="['/update-prodact',products._id]" class="fa fa-edit text-success"></i>
                                                     <i (click)="eliminateProduct(products._id)" class="fa fa-trash text-danger"></i>
                                                 </td>
                                             </tr>

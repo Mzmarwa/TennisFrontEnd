@@ -8,6 +8,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { CoashComponent } from './components/coash/coash.component';
+import { GameComponent } from './components/game/game.component';
 
 
 
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:'contact', component:ContactComponent},
   {path:'shop', component:ShopComponent},
   {path:'coash', component:CoashComponent},
+  {path:'game', component:GameComponent},
   
 
   {path: 'dashboard',

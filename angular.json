@@ -29,7 +29,9 @@
             "styles": [
               "src/styles.css",
               "node_modules/ngx-toastr/toastr.css" ,
-              "node_modules/font-awesome/css/font-awesome.css"
+              "node_modules/font-awesome/css/font-awesome.css",
+              "src/assets/game/js/script.js"
+              
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js"
