@@ -13,32 +13,28 @@ export class ProductService {
   constructor(private http: HttpClient) { }
   
   getProduct(): Observable<any> {
-    return this.http.get<Product>(`${this.apiUrl}/produit/findProduit`)
-    .pipe(map(product => {
-      localStorage.setItem('product', JSON.stringify(product));
-      return product;
-    }));
+    return this.http.get<Product>(`${this.apiUrl}/produit/findProduit`);
   }
   eliminateProduct(id: string): Observable<any>{
-    return this.http.delete<Product>(`${this.apiUrl}/produit/deleteProduit/`+ id)
-    .pipe(map(product => {
-      localStorage.setItem('product', JSON.stringify(product));
-      return product;
-    }));
+    return this.http.delete<Product>(`${this.apiUrl}/produit/deleteProduit/`+ id);
   }
 
-  addProduct( product: Product): Observable<any>{
-    return this.http.post<Product>(`${this.apiUrl}/produit/saveProduit`, product)
-    .pipe(map(product => {
-      localStorage.setItem('product', JSON.stringify(product));
-      return product;
-    }));
+  addProduct(newProd:any, imgProd: File): Observable<any> {
+    const fd = new FormData();
+    
+    fd.append('name', newProd.name); 
+    fd.append('marque', newProd.marque);
+    fd.append('description', newProd.description)  ;   
+    fd.append('prix', newProd.prix);
+    fd.append('image', imgProd, imgProd.name);
+  
+    return this.http.post<Product>(`${this.apiUrl}/produit/saveProduit`, fd);
   }
-  updateProduct(id: string): Observable<any>{
-    return this.http.get<Product>(`${this.apiUrl}/produit/updateProduit/`+ id)
-    .pipe(map(product => {
-      localStorage.setItem('product', JSON.stringify(product));
-      return product;
-    }));
+  obtenerProduct(id:String): Observable<any>{
+    return this.http.get<Product>(`${this.apiUrl}/produit/getProduit/`+ id);
+  }
+
+  updateProduct(id: string, product:Product): Observable<any>{
+    return this.http.put<Product>(`${this.apiUrl}/produit/updateProduit/`+ id, product);
   }
 }

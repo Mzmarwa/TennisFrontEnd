@@ -12,6 +12,7 @@ import { GameComponent } from './components/game/game.component';
 
 
 
+
 const routes: Routes = [
   {path:'navbar', component:NavbarComponent},
   {path:'login', component:LoginComponent},
@@ -21,9 +22,10 @@ const routes: Routes = [
   {path:'shop', component:ShopComponent},
   {path:'coash', component:CoashComponent},
   {path:'game', component:GameComponent},
+
   
 
-  {path: 'dashboard',
+  {path: 'admin',
     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
 }
   

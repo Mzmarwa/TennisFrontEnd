@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Equipe } from 'src/app/models/equipe';
 import { Joueur } from 'src/app/models/joueur';
 import { AuthService } from 'src/app/services/auth.service';
@@ -12,57 +14,53 @@ import { JoueurService } from 'src/app/services/joueur.service';
 export class InscritComponent implements OnInit {
 
   public equipe!: Equipe;
-  avatar: any;
   equipes: Equipe[]=[];
-  constructor(private auth: AuthService, private js: JoueurService) { }
-
-  joueurForm: Joueur = {
-    _id: '',
-    name: '',
-    lastname: '',
-    avatar: '',
-    email: '',
-    password: '',    
-    age: 0,
-    telephone: '',   
-    sexe: '', 
+  submitted = false;
+  registerForm: FormGroup;
+ 
+  constructor(private sc:  JoueurService,
+     public formBuilder: FormBuilder,
+      private router: Router) {
+    this.registerForm = this.formBuilder.group({
+     
+    name:['',Validators.required],
+    lastname: ['',Validators.required],
+    //avatar: ['',Validators.required],
+    email: ['',Validators.required],
+    password: ['',Validators.required],    
+    age: ['',Validators.required],
+    telephone: ['',Validators.required],   
+    sexe: ['',Validators.required], 
     equipe: this.equipe
-
-  };
-
-  loadImage(img: any) {
-    this.avatar = img.target.files[0];
-    console.log(this.avatar);
+    })
   }
 
   ngOnInit(): void {
-    this.listEquipe()
   }
 
-  addJoueur() {
-    this.auth.inscritJoueur(this.joueurForm, this.avatar).subscribe(
-      (data) => {
-        if (!data) {
-          alert('ERROR!!');
-        } else {
-          console.log(data);
-          alert('Joueur saved successfully!');
-          //this.listProduct();
-        }
-      },
-      (err) => {
-        console.log(err);        
+  onSubmit() {
+   
+   
+      const JOUEUR: Joueur = {
+       name: this.registerForm.get("name")?.value,
+       lastname: this.registerForm.get("lastname")?.value,
+       email: this.registerForm.get("email")?.value,
+       password: this.registerForm.get("password")?.value,
+       age: this.registerForm.get("age")?.value,
+       telephone: this.registerForm.get("telephone")?.value,
+       sexe: this.registerForm.get("sexe")?.value,
+       equipe: this.registerForm.get("equipe")?.value,
+  
       }
-    );
+  
+  console.log(JOUEUR);
+      this.sc.addJoueur(JOUEUR).subscribe(data =>{
+        this.router.navigate(["/home"]);
+       
+      }, error =>{
+        console.log(error);
+        this.registerForm.reset();
+      }) 
+    }
   }
 
-  listEquipe() {
-    this.js.getEquipe().subscribe(
-      (data) => {
-     this.equipes  = data 
-      console.log(data)
-      }, (err) => {console.log(err)}
-    )
-  }
-
-}

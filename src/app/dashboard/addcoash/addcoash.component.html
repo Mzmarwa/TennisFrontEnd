@@ -343,20 +343,20 @@
                     <i class="bi bi-card-list"></i>
                     <span>Register</span>
                 </a>
-            </li>
-
-            <!-- End Register Page Nav -->
+            </li><!-- End Register Page Nav -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="pages-login.html">
                     <i class="bi bi-box-arrow-in-right"></i>
                     <span>Login</span>
                 </a>
-            </li>
-            <!-- End Login Page Nav -->
+            </li><!-- End Login Page Nav -->
+
+
+
         </ul>
-    </aside>
-    <!-- End Sidebar-->
+
+    </aside><!-- End Sidebar-->
 
     <main id="main" class="main">
 
@@ -365,64 +365,94 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active"> List of prodacts</li>
+                    <li class="breadcrumb-item">prodacts</li>
+                    <li class="breadcrumb-item active">add Prodact</li>
                 </ol>
             </nav>
-        </div>
-        <!-- End Page Title -->
+        </div><!-- End Page Title -->
 
-        <section class="section dashboard">
+        <section class="section">
             <div class="row">
-
-                <!-- Left side columns -->
                 <div class="col-lg-12">
-                    <div class="row">
-                        <!-- Prodactes -->
-                        <div class="col-12">
-                            <div class="card top-selling overflow-auto">
-                                <div class="card-body pb-0">
 
-                                    <h5 class="card-title">List of Products <button class="btn btn-success float-end"
-                                           routerLink="/add-product">Add Product</button></h5>
-                                    <table *ngIf="listProduct.length > 0"  class="table table-borderless mt-5">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Picture</th>
-                                                <th scope="col">Marque</th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Description</th>
-                                                <th scope="col">Price</th>
-                                                <th scope="col">Action</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr *ngFor ="let products of listProduct">
-                                                <td scope="row"><img [src]="'http://localhost:3000/'+products.image" class="card-img-top" alt="..."></td>
-                                         
-                                                <td>{{products.marque}}</td>
-                                                <td class="fw-bold">{{products.name}}</td>
-                                                <td><a href="#" class="text-primary fw-bold">{{products.description}}</a></td>
-                                                <td>{{products.prix }}</td>
-                                                <td>
-                                                    <i [routerLink]="['/update-product',products._id]" class="fa fa-edit text-success"></i>
-                                                    <i (click)="eliminateProduct(products._id)" class="fa fa-trash text-danger"></i>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <h5 style="text-align: start; margin-top: 10px " *ngIf="listProduct.length == 0">there are no products to display</h5>
+                    <div class="card">
+                        <div class="card-body">
+                            <span class="card-title">{{cardtitle }}</span>
+                            
+                            <!-- General Form Elements -->
+                            <form [formGroup]="coashForm" (submit)="addCoash()" >
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" formControlName="name" class="form-control">
+                                        <div class="text-danger" *ngIf="coashForm.get('name')?.hasError('required') && coashForm.get('name')?.touched">
+                                            <span>This text is <strong>important </strong> . </span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="row mb-3">
+                                    <label for="inputNumber" class="col-sm-2 col-form-label">avatar</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" (change)="onFileSelected($event)" type="file" id="formFile">
+                                        <div class="text-danger" *ngIf="coashForm.get('avatar')?.hasError('required') && coashForm.get('avatar')?.touched">
+                                            <span>Picture is <strong>important </strong> . </span>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputEmail" class="col-sm-2 col-form-label">lastname</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" formControlName="lastname" class="form-control">
+                                        <div class="text-danger" *ngIf="coashForm.get('lastname')?.hasError('required') && coashForm.get('lastname')?.touched">
+                                            <span>This text is <strong>important </strong> . </span>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputEmail" class="col-sm-2 col-form-label">email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" formControlName="email" class="form-control">
+                                        <div class="text-danger" *ngIf="coashForm.get('email')?.hasError('required') && coashForm.get('email')?.touched">
+                                            <span>This text is <strong>important </strong> . </span>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="inputEmail" class="col-sm-2 col-form-label">password</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" formControlName="password" class="form-control">
+                                        <div class="text-danger" *ngIf="coashForm.get('password')?.hasError('required') && coashForm.get('password')?.touched">
+                                            <span>This text is <strong>important </strong> . </span>
+                                    </div>
+                                    </div>
+                                </div>
+
+                                
+                               
+
+                                
+                                <div class="row mb-3">
+
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-secondary btn-lg float-start"  routerLink="/coashs">Annuler</button>
+                                        <button type="submit"  [disabled]="coashForm.invalid" class="btn btn-success btn-lg float-end">Add Product</button>
+                                       
+                                    </div>
+                                </div>
+
+                            </form>
+                            <!-- End General Form Elements -->
+
                         </div>
-                        <!-- End Prodactes -->
                     </div>
+
                 </div>
-                <!-- End Left side columns -->
+
+
             </div>
         </section>
-    </main>
-    <!-- End #main -->
+
+    </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
@@ -430,12 +460,13 @@
             &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
+
             Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
         </div>
-    </footer>
-    <!-- End Footer -->
+    </footer><!-- End Footer -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
 
 
 

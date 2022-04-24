@@ -377,15 +377,15 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Add a new Product</h5>
+                            <h5 class="card-title">{{cardtitle }}</h5>
 
                             <!-- General Form Elements -->
-                            <form [formGroup]="productForm" (ngSubmit)="addProduct()">
+                            <form  >
                                 <div class="row mb-3">
                                     <label for="inputText" class="col-sm-2 col-form-label">Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" formControlName="name" class="form-control">
-                                        <div class="text-danger" *ngIf="productForm.get('name')?.hasError('required') && productForm.get('name')?.touched">
+                                        <input type="text" [(ngModel)]="productForm.name" [ngModelOptions]="{standalone: true}" class="form-control">
+                                        <div class="text-danger" >
                                             <span>This text is <strong>important </strong> . </span>
                                         </div>
                                     </div>
@@ -393,8 +393,8 @@
                                 <div class="row mb-3">
                                     <label for="inputEmail" class="col-sm-2 col-form-label">Marque</label>
                                     <div class="col-sm-10">
-                                        <input type="text" formControlName="marque" class="form-control">
-                                        <div class="text-danger" *ngIf="productForm.get('marque')?.hasError('required') && productForm.get('marque')?.touched">
+                                        <input type="text" [(ngModel)]="productForm.marque" [ngModelOptions]="{standalone: true}" class="form-control">
+                                        <div class="text-danger" >
                                             <span>This text is <strong>important </strong> . </span>
                                     </div>
                                     </div>
@@ -403,8 +403,8 @@
                                 <div class="row mb-3">
                                     <label for="inputNumber" class="col-sm-2 col-form-label">Prix</label>
                                     <div class="col-sm-10">
-                                        <input type="number" formControlName="prix" class="form-control">
-                                        <div class="text-danger" *ngIf="productForm.get('prix')?.hasError('required') && productForm.get('prix')?.touched">
+                                        <input type="number" [(ngModel)]="productForm.prix" [ngModelOptions]="{standalone: true}" class="form-control">
+                                        <div class="text-danger" >
                                             <span>Price is <strong>important </strong> . </span>
                                         </div>
                                     </div>
@@ -412,8 +412,8 @@
                                 <div class="row mb-3">
                                     <label for="inputNumber" class="col-sm-2 col-form-label">Image</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" formControlName="image" type="file" id="formFile">
-                                        <div class="text-danger" *ngIf="productForm.get('image')?.hasError('required') && productForm.get('image')?.touched">
+                                        <input type="file" id="formFile" class="form-control" [(ngModel)]="productForm.image" [ngModelOptions]="{standalone: true}" (change)="loadImage($event)" >
+                                        <div class="text-danger" >
                                             <span>Picture is <strong>important </strong> . </span>
                                             </div>
                                     </div>
@@ -422,7 +422,7 @@
                                 <div class="row mb-3">
                                     <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" formControlName="description"
+                                        <textarea class="form-control"  [(ngModel)]="productForm.description" [ngModelOptions]="{standalone: true}"
                                             style="height: 100px"></textarea>
                                     </div>
                                 </div>
@@ -444,8 +444,8 @@
                                 <div class="row mb-3">
 
                                     <div class="col-sm-12">
-                                        <button routerLink="/add-product" class="btn btn-secondary btn-lg float-start">Annuler</button>
-                                        <button type="submit"  [disabled]="productForm.invalid" class="btn btn-success btn-lg float-end">Add
+                                        <button class="btn btn-secondary btn-lg float-start"  routerLink="/products">Annuler</button>
+                                        <button type="submit"  (click)="addProduct()"  class="btn btn-success btn-lg float-end">Add
                                             Product</button>
                                        
                                     </div>

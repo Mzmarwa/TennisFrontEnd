@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   loginForm: FormGroup;
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-  passwordPattern = "[a-z0-9._%+-]";
+  passwordPattern = "";
   constructor(private sc: AuthService, public formBuilder: FormBuilder, private router: Router) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
@@ -33,13 +33,24 @@ export class LoginComponent implements OnInit {
 
     this.sc.login(this.loginForm.value)
     .subscribe(
-      res => {             
-        localStorage.setItem('token', res.token);     
-        this.router.navigate(['/inscrit']);
-      },
-      err => console.log(err)
-    );
+      data => {          
+        if(data == null) {
+          alert("Uername or password is wrong");
+          
+        }else {
+          console.log("Login successful");     
+  
+          if(data.user.role == 'Joueur') {
+            this.router.navigate(['/home']);
+          } 
+  
+          if( data.user.role == 'Admin') {
+            this.router.navigate(['/listcontact']);
+          }
+        }
+      }, err => {
+        alert("Login failed");
 
-  }
-
+      })
+}
 }

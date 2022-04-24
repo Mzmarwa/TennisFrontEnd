@@ -1,11 +1,10 @@
 import { Equipe } from "./equipe";
 
-
 export class Joueur{
-    _id!: any;
+    _id?: any;
     name!: any;
     lastname!:any;
-	avatar!: any;
+	//avatar!: any;
 	email!: any;
     password!: string;
     age!: any;

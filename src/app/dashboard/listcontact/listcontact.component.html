@@ -257,17 +257,17 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-shop"></i><span>Products</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-shop"></i><span>products</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
                         <a href="/products">
-                            <i class="bi bi-circle"></i><span>List of Products</span>
+                            <i class="bi bi-circle"></i><span>List of products</span>
                         </a>
                     </li>
                     <li>
                         <a href="/add-product">
-                            <i class="bi bi-circle"></i><span>Add Product</span>
+                            <i class="bi bi-circle"></i><span>Add product</span>
                         </a>
                     </li>
                 </ul>
@@ -275,27 +275,38 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
+                    <i class="bi bi-people"></i><span>Coashs</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="forms-elements.html">
-                            <i class="bi bi-circle"></i><span>Form Elements</span>
+                        <a href="/coashs">
+                            <i class="bi bi-circle"></i><span>List of coash</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/addcoash">
+                            <i class="bi bi-circle"></i><span>Add coash</span>
                         </a>
                     </li>
 
                 </ul>
             </li><!-- End Forms Nav -->
+           
 
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i
+                    <i class="bi bi-people"></i><span>Player</span><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="tables-general.html">
-                            <i class="bi bi-circle"></i><span>General Tables</span>
+                        <a href="/player">
+                            <i class="bi bi-circle"></i><span>List of Player</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/addplayer">
+                            <i class="bi bi-circle"></i><span>Add Player</span>
                         </a>
                     </li>
                 </ul>
@@ -361,7 +372,7 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Products</h1>
+            <h1>Coashs</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -382,36 +393,35 @@
                             <div class="card top-selling overflow-auto">
                                 <div class="card-body pb-0">
 
-                                    <h5 class="card-title">List of Products <button class="btn btn-success float-end"
-                                           routerLink="/add-product">Add Product</button></h5>
-                                    <table *ngIf="listProduct.length > 0"  class="table table-borderless mt-5">
+                                    <h5 class="card-title">List of Contacts </h5>
+                                    <table *ngIf="listContact.length > 0"  class="table table-borderless mt-5">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Picture</th>
-                                                <th scope="col">Marque</th>
+                                               
                                                 <th scope="col">Name</th>
-                                                <th scope="col">Description</th>
-                                                <th scope="col">Price</th>
+                                                <th scope="col">Subject</th>
+                                                <th scope="col">Message</th>
                                                 <th scope="col">Action</th>
+                                                
                                             </tr>
                                         </thead>
-
+                                        
                                         <tbody>
-                                            <tr *ngFor ="let products of listProduct">
-                                                <td scope="row"><img [src]="'http://localhost:3000/'+products.image" class="card-img-top" alt="..."></td>
+                                            <tr *ngFor ="let contacts of listContact">
+                                                
                                          
-                                                <td>{{products.marque}}</td>
-                                                <td class="fw-bold">{{products.name}}</td>
-                                                <td><a href="#" class="text-primary fw-bold">{{products.description}}</a></td>
-                                                <td>{{products.prix }}</td>
+                                                <td class="fw-bold" >{{contacts.name}}</td>
+                                                <td class="fw-bold">{{contacts.subject}}</td>
+                
+                                                <td  class="text-primary fw-bold" >{{contacts.message }}</td>
                                                 <td>
-                                                    <i [routerLink]="['/update-product',products._id]" class="fa fa-edit text-success"></i>
-                                                    <i (click)="eliminateProduct(products._id)" class="fa fa-trash text-danger"></i>
+                                                    
+                                                    <i (click)="eliminateContact(contacts._id)" class="fa fa-trash text-danger"></i>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <h5 style="text-align: start; margin-top: 10px " *ngIf="listProduct.length == 0">there are no products to display</h5>
+                                    <h5 style="text-align: start; margin-top: 10px " *ngIf="listContact.length == 0">there are no contacts to display</h5>
                                 </div>
                             </div>
                         </div>
